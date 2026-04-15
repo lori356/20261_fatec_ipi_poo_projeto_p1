@@ -6,7 +6,7 @@ public class Jogo {
         var p1 = new Personagem();
         p1.nome = "Mateus Mito";
 
-        while(true){
+        while(!p1.morte()){
         var acao = gerador.nextInt(1, 4);
             switch(acao){
                 case 1:
@@ -19,12 +19,15 @@ public class Jogo {
                     p1.dormir();
                     break;
             }
-            System.out.println("****************************");
+            System.out.println("***********************************************");
+            Thread.sleep(500);
             System.out.println(p1);
-            Thread.sleep(5000);
-            p1.inventario();
-
+            p1.mochila();
+           
         }
+        System.out.println("***********************************************");
+        System.out.println(p1.nome + " está morto.");
+        p1.mochila();
 
     }   
 }

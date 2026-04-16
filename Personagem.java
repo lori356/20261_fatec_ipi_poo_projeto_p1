@@ -16,12 +16,24 @@ Personagem() {
     energia = 10;
     fome = 0;
     sono = 0;
+    itens = new ArrayList<>();
+    repertorio = new ArrayList<>();
+}
+Personagem(String nome, int energia, int fome, int sono) {
+    this.nome = nome;
+    this.energia = energia;
+    this.fome = fome;
+    this.sono = sono;
+    itens = new ArrayList<>();
+    repertorio = new ArrayList<>();
 }
 Personagem(int energia, int fome, int sono) {
     System.out.println("Construindo novo personagem");
     this.energia = energia < 0 || energia > 10 ? 10 : energia;
     this.fome = fome >= 0 && fome <= 10 ? fome : 0;
     this.sono = sono >= 0 && sono <= 10 ? sono : 0;
+    itens = new ArrayList<>();
+    repertorio = new ArrayList<>();
 }
     void cacar(){
         var gerador = new Random();

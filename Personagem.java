@@ -2,8 +2,6 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
 public class Personagem{
     public String nome;
     private int energia;
@@ -86,6 +84,34 @@ Personagem(int energia, int fome, int sono) {
         }else{
         System.out.println(nome + " sem sono");
         }
+    }
+    void duelar(Personagem oponente) {
+        if (energia > 0 && oponente.energia > 0){
+            if (repertorio.size() == 0) {
+                System.out.println("O duelo foi cancelado porque " + nome +" não conhece nenhuma música.");
+                return;
+            }
+            System.out.println("----------------------------------------------------------------");
+            System.out.println(nome + " inicia o duelo!");
+            var gerador = new Random();
+            var musicaEscolhida = gerador.nextInt(repertorio.size());
+            var dueloMusical = repertorio.get(musicaEscolhida);
+                if (oponente.repertorio.contains(dueloMusical)) {
+                    energia --; oponente.energia --;
+                    System.out.println("A plateia se entediou com a performance.");
+                    System.out.println(nome +" ficou cansado.");
+                    System.out.println(oponente.nome +" ficou cansado.");
+                    System.out.println("----------------------------------------------------------------");
+                }else{
+                    oponente.energia--;
+                    oponente.repertorio.add(dueloMusical);
+                    System.out.println(nome + " venceu o duelo!");
+                    System.out.println(oponente.nome +" ficou cansado.");
+                    System.out.println(oponente.nome +" aprendeu " + dueloMusical + " pela batalha!");
+                    System.out.println("----------------------------------------------------------------");
+            }
+        }
+
     }
     void aprenderMusica(ArrayList<Musica> disponiveis) {
         var gerador = new Random();

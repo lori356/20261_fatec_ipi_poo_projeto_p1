@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class Jogo {
     public static void main(String[] args) throws Exception {
+        var p1 = new Cacador("Hans Hunter" , 10, 0, 0);
+        var p2 = new Bardo("Tico Trovador" , 3, 8, 8);
         var gerador = new Random();
-        var p1 = new Personagem("Renato Rapper" , 10, 0, 0);
-        var p2 = new Personagem("Tico Trovador" , 3, 8, 8);
 
         ArrayList<Musica> colecao = new ArrayList<>();
         colecao.add(new Musica("Geração Coca-Cola"));
@@ -22,8 +22,7 @@ public class Jogo {
         p2.repertorio.add(new Musica("A Melódia de Tico Trovador"));
 
         while(!p1.morte() || !p2.morte()){ 
-            var acaoP1 = gerador.nextInt(1, 4);
-            var acaoP2 = gerador.nextInt(1, 6);
+            
             var dueloChance = gerador.nextInt(1, 3);
             if (dueloChance == 1) {
                 p1.duelar(p2);
@@ -37,18 +36,6 @@ public class Jogo {
                 if (p2.morte()) {
                 System.out.println("*********CAMPEÃO*********");
                 }
-                switch(acaoP1){
-                    case 1:
-                        p1.cacar();
-                        break;
-                    case 2:
-                        p1.comer();
-                        break;
-                    case 3:
-                        p1.dormir();
-                        break;
-                } 
-                p1.aprenderMusica(colecao);
             }
             p1.inventario();
             System.out.println("Músicas Conhecidas: "+p1.repertorio);
@@ -60,17 +47,6 @@ public class Jogo {
             } else { 
                 if (p1.morte()) {
                 System.out.println("*********CAMPEÃO*********");
-                }
-                switch(acaoP2){
-                    case 1:
-                        p2.cacar();
-                        break;
-                    case 2:
-                        p2.comer(); 
-                        break;
-                    case 3, 4, 5:
-                        p2.dormir();
-                        break;
                 }
                 p2.aprenderMusica(colecao);
             }

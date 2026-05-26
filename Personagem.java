@@ -8,8 +8,9 @@ public abstract class Personagem{
     private int fome;
     private int sono;
     private ArrayList<String> itens = new ArrayList<>();
-    ArrayList<Musica> repertorio = new ArrayList<>();
+    private ArrayList<Musica> repertorio = new ArrayList<>();
     public abstract void realizarAcaoAleatoria();
+    public abstract void duelar(Personagem adversario);
     Personagem() {
         System.out.println("Construindo novo personagem");
         energia = 10;
@@ -57,62 +58,34 @@ public abstract class Personagem{
                 itens.add("presa");
                 break; 
         }   
-    }else{
-        System.out.printf("%s sem energia para caçar\n",nome);
-    }
-    // fome +=1 fome++ ++fome
-    if (fome < 10) fome = fome + 1;
-    // sono = sono + 1 > 10 ? sono : sono + 1;
+        }else{
+            System.out.printf("%s sem energia para caçar\n",nome);
+        }
+        // fome +=1 fome++ ++fome
+        if (fome < 10) fome = fome + 1;
+        // sono = sono + 1 > 10 ? sono : sono + 1;
         sono = sono == 10 ? sono : sono + 1;
     }
     //método comer
     void comer(){
         if(fome >= 1){
-        System.out.println(nome + " comendo");
-        energia = Math.min(energia + 1, 10);
-        fome--;
-    }
-    else{
-        System.out.println(nome + " sem fome");
+            System.out.println(nome + " comendo");
+            energia = Math.min(energia + 1, 10);
+            fome--;
+        }
+        else{
+            System.out.println(nome + " sem fome");
         }
     }
     //método dormir
     void dormir(){
         if(sono >= 1){
-        System.out.print(nome + " dormindo\n");
-        energia = energia == 10 ? energia : energia + 1;
-        sono -= 1;
+            System.out.print(nome + " dormindo\n");
+            energia = energia == 10 ? energia : energia + 1;
+            sono -= 1;
         }else{
-        System.out.println(nome + " sem sono");
+            System.out.println(nome + " sem sono");
         }
-    }
-    void duelar(Personagem oponente) {
-        if (energia > 0 && oponente.energia > 0){
-            if (repertorio.size() == 0) {
-                System.out.println("O duelo foi cancelado porque " + nome +" não conhece nenhuma música.");
-                return;
-            }
-            System.out.println("----------------------------------------------------------------");
-            System.out.println(nome + " inicia o duelo!");
-            var gerador = new Random();
-            var musicaEscolhida = gerador.nextInt(repertorio.size());
-            var dueloMusical = repertorio.get(musicaEscolhida);
-                if (oponente.repertorio.contains(dueloMusical)) {
-                    energia --; oponente.energia --;
-                    System.out.println("A plateia se entediou com a performance.");
-                    System.out.println(nome +" ficou cansado.");
-                    System.out.println(oponente.nome +" ficou cansado.");
-                    System.out.println("----------------------------------------------------------------");
-                }else{
-                    oponente.energia--;
-                    oponente.repertorio.add(dueloMusical);
-                    System.out.println(nome + " venceu o duelo!");
-                    System.out.println(oponente.nome +" ficou cansado.");
-                    System.out.println(oponente.nome +" aprendeu " + dueloMusical + " pela batalha!");
-                    System.out.println("----------------------------------------------------------------");
-            }
-        }
-
     }
     void aprenderMusica(ArrayList<Musica> disponiveis) {
         var gerador = new Random();
@@ -136,6 +109,42 @@ public abstract class Personagem{
     public String toString(){
     //nome: e:5, f:4, s:8
         return String.format("%s: e:%d, f:%d, s:%d", nome, energia, fome, sono);
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+    public void setFome(int fome) {
+        this.fome = fome;
+    }
+    public void setSono(int sono) {
+        this.sono = sono;
+    }
+    public void setItens(ArrayList<String> itens) {
+        this.itens = itens;
+    }
+    public void setRepertorio(ArrayList<Musica> repertorio) {
+        this.repertorio = repertorio;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public int getEnergia() {
+        return energia;
+    }
+    public int getFome() {
+        return fome;
+    }
+    public int getSono() {
+        return sono;
+    }
+    public ArrayList<String> getItens() {
+        return itens;
+    }
+    public ArrayList<Musica> getRepertorio() {
+        return repertorio;
     }
 }
 

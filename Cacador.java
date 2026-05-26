@@ -25,4 +25,33 @@ public class Cacador extends Personagem {
                 break;
         }
     }
+    @Override
+    public void duelar(Personagem adversario){
+        if (getEnergia() > 0 && adversario.getEnergia() > 0){
+            if (getItens().size() == 0) {
+                System.out.println("O duelo foi cancelado porque " + nome +" não possui um item.");
+                return;
+            }
+            System.out.println("----------------------------------------------------------------");
+            System.out.println(nome + " inicia o duelo de inventário!");
+            var gerador = new Random();
+            var itemEscolhido = gerador.nextInt(getItens().size());
+            var dueloItem = getItens().get(itemEscolhido);
+            if (adversario.getItens().contains(dueloItem)) {
+                setEnergia(getEnergia()-1); adversario.setEnergia(adversario.getEnergia()-1);
+                System.out.println("A plateia já conhece esse item.");
+                System.out.println(nome +" ficou cansado.");
+                System.out.println(adversario.nome +" ficou cansado.");                    
+                System.out.println("----------------------------------------------------------------");
+            }else{
+                adversario.setEnergia(adversario.getEnergia()-1);
+                adversario.getItens().add(dueloItem);
+                System.out.println(nome + " venceu o duelo!");
+                System.out.println(adversario.nome +" ficou cansado.");
+                System.out.println(adversario.nome +" obteve " + dueloItem + " do adversário como troféu!");
+                getItens().remove(dueloItem);
+                System.out.println("----------------------------------------------------------------");
+            }
+        }  
+    }
 }

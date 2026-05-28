@@ -89,12 +89,12 @@ public abstract class Personagem{
     }
     void aprenderMusica(ArrayList<Musica> disponiveis) {
         var gerador = new Random();
-        var musicaLista = gerador.nextInt(disponiveis.size());
-        Musica musicaProcessada = disponiveis.get(musicaLista); 
+        var colecao = gerador.nextInt(disponiveis.size());
+        Musica musicaProcessada = disponiveis.get(colecao); 
         if (repertorio.contains(musicaProcessada)) {
-            System.out.println(nome + " já conhece a música " + musicaProcessada.titulo +"!");
+            System.out.println(nome + " já conhece a música " + musicaProcessada.getTitulo() +"!");
         } else {
-            System.out.println(nome + " aprendeu uma nova música: " + musicaProcessada.titulo +"!");
+            System.out.println(nome + " aprendeu uma nova música: " + musicaProcessada.getTitulo() +"!");
             repertorio.add(musicaProcessada);
         }
     }

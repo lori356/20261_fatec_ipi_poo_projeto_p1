@@ -1,7 +1,8 @@
 
 public class Musica implements Comparable <Musica> {
     
-    String titulo;
+    private String titulo;
+    private int id;
     
     public Musica(String titulo) {
         this.titulo = titulo;

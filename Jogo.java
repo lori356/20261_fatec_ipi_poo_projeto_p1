@@ -6,20 +6,9 @@ public class Jogo {
         var p1 = new Cacador("Hans Hunter" , 10, 0, 0);
         var p2 = new Bardo("Tico Trovador" , 3, 8, 8);
         var gerador = new Random();
+        ArrayList<Musica> colecao = new ArrayList<>(MusicasDAO.listar()); 
 
-        ArrayList<Musica> colecao = new ArrayList<>();
-        colecao.add(new Musica("Geração Coca-Cola"));
-        colecao.add(new Musica("Master Of Puppets"));
-        colecao.add(new Musica("Debí Tirar Más Fotos"));
-        colecao.add(new Musica("One Beer"));
-        colecao.add(new Musica("Angel Of Death"));
-        colecao.add(new Musica("Virtual Insanity"));
-        colecao.add(new Musica("INVISIBLE"));
-        colecao.add(new Musica("Cheia De Manias"));
-        colecao.add(new Musica("War Pigs"));
-        colecao.add(new Musica("Vira-Vira"));
-
-        p2.getRepertorio().add(new Musica("A Melódia de Tico Trovador"));
+        p2.getRepertorio().add(new Musica("A Melódia de Tico Trovador")); 
 
         while(!p1.morte() || !p2.morte()){ 
             var dueloChance = gerador.nextInt(1, 3);
